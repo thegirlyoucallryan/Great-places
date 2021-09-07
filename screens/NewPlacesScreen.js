@@ -1,19 +1,20 @@
 
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import HeaderButton from '../components/HeaderButton'
 
 
-import React, {useState } from 'react';
+
+import React, {useState, useCallback } from 'react';
 import { View, Text, StyleSheet, Platform, ScrollView, Button, TextInput, ImagePickerIOS } from 'react-native';
 import Colors from '../constants/Colors';
 import { useDispatch } from 'react-redux';
 import * as placesActions from '../store/actions/places-actions';
 import ImagePicker from '../components/ImageSelector';
+import LocationPicker from '../components/LocationPicker';
 
 
 const NewPlacesScreen = props => {
     const [title, setNewTitle] = useState('');
     const [image, setImage] = useState();
+    const [selectedLocation, setSelectedLocation] = useState()
     const dispatch = useDispatch();
 
 
@@ -24,21 +25,27 @@ const NewPlacesScreen = props => {
     const imageTakenHandler =(imageUri) => {
         setImage(imageUri);
       
-    }
+    };
+
+    const locationpickedHandler =useCallback(location => {
+        setSelectedLocation(location);
+
+    }, []);
 
     const savePlaceHandler =() => {
-        dispatch(placesActions.addPlace(title, image));
+        dispatch(placesActions.addPlace(title, image, selectedLocation));
         props.navigation.goBack();
       
     };
 
     
   return (
-      <ScrollView>
+      <ScrollView >
   <View style={styles.form}>
       <Text stye={styles.label}>Title</Text>
       <TextInput style={styles.TextInput} onChangeText={titleHandler} value={title}/>
       <ImagePicker onImageTaken={imageTakenHandler} />
+      <LocationPicker navigation={props.navigation} onLocation={locationpickedHandler} />
       <Button title='Save Place' color={Colors.accentDark} onPress={savePlaceHandler}/>
   </View>
   </ScrollView>
@@ -49,15 +56,10 @@ const NewPlacesScreen = props => {
 
 
 NewPlacesScreen.navigationOptions = navData => {
+    
     return {
          headerTitle: "Add Places",
-     headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-         <Item title='Add Place' iconName={Platform.OS === 'android' ?  'md-add' : 'ios-add'}
-         onPress={() => {
-             navData.navigation.navigate('NewPlace');
-         }}
-         />
-     </HeaderButtons>
+    
     };
  };
 

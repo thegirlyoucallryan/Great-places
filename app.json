@@ -1,17 +1,18 @@
 {
   "expo": {
-    "name": "rnplaces",
-    "slug": "rnplaces",
+    "name": "React Native Places",
+    "slug": "rn-places",
+    "privacy": "public",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/splash_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#232323"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 4000
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,8 +22,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/places-adaptive.png",
+        "backgroundColor": "#232323"
       }
     },
     "web": {

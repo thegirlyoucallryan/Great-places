@@ -17,13 +17,13 @@ const PlacesListScreen = props => {
         dispatch(placesActions.loadPlaces());
     }, [dispatch])
     return (
-        <FlatList data={places} keyExtractor={item => item.id} renderItem={itemData => <PlaceItem image={itemData.item.image} title={itemData.item.title} address={null} onSelect={() => props.navigation.navigate('PlaceDetail', {
+        <FlatList data={places} keyExtractor={item => item.id} renderItem={itemData => <PlaceItem image={itemData.item.image} title={itemData.item.title} address={itemData.item.address} onSelect={() => props.navigation.navigate('PlaceDetail', {
             placeTitle: itemData.item.title,
             placeId: itemData.item.id,
             placeImage: itemData.item.image
         })
         }/>
-            } r
+            } 
             />
             );
 
@@ -32,7 +32,7 @@ const PlacesListScreen = props => {
 
 PlacesListScreen.navigationOptions = navData => {
    return {
-                headerTitle: "All the Places",
+                headerTitle: "Visited Places",
     headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item title='Add Place' iconName={Platform.OS === 'android' ? 'md-add' : 'ios-add'}
                     onPress={() => {

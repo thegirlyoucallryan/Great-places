@@ -1,8 +1,7 @@
 
 
 import * as SQLite from 'expo-sqlite';
-import { FAILSAFE_SCHEMA } from 'js-yaml';
-import { exp } from 'react-native/Libraries/Animated/src/Easing';
+
 
 const db = SQLite.openDatabase('places.db');
 
