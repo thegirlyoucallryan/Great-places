@@ -2,10 +2,10 @@
 
 
 import React, {useState, useCallback, useEffect} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import Colors from '../constants/Colors';
-import { init } from '../helpers/db';
+
 
 
 
